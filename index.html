@@ -1,90 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>simple crystal game</title>
+    <title>Crystal Collector</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <style type="text/css">
-        .crystal-image {
-            width: 300px;
-            height: 300px;
-        }
-    </style>
-
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-
-    <h1>Number to Guess: <span id="number-to-guess"></span></h1>
-
-    <!-- Note that this div is now empty. We will fill it dynamically -->
-    <div id="crystals">
+    <div class="container">
+        <h1 class="head1">Crystal Collector</h1>
+        <p class="p1">Collect the crystals!</p>
+            <div class="jumbotron">
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <h4>Target Score</h4>
+                    <hr />
+                    <p id="targetScore"></p>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <h4>Your Score</h4>
+                    <hr />
+                    <p id="playerScore"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <h3>Wins: <span id="winText"></span></h3>
+            </div>
+            <div class="col-sm-6">
+                <h3>Losses: <span id="lossText"></span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <img id="crystalBlue" src="./assets/images/blue.png" class="img-responsive" alt="" />
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <img id="crystalGreen" src="./assets/images/green.png"
+                    class="img-responsive" alt="" />
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <img id="crystalRed" src="./assets/images/red.png" class="img-responsive" alt="" />
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <img id="crystalYellow" src="./assets/images/yellow.png" class="img-responsive" alt="" />
+            </div>
+        </div>
     </div>
-
-    <!-- JAVASCRIPT  -->
-    <!-- ========================================= -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        var targetNumber = 53;
-
-        $("#number-to-guess").text(targetNumber);
-
-        var counter = 0;
-
-        // Now for the hard part. Creating multiple crystals each with their own unique number value.
-
-        // We begin by expanding our array to include four options.
-        var numberOptions = [10, 5, 3, 7];
-
-        // Next we create a for loop to create crystals for every numberOption.
-        for (var i = 0; i < numberOptions.length; i++) {
-
-            // For each iteration, we will create an imageCrystal
-            var imageCrystal = $("<img>");
-
-            // First each crystal will be given the class ".crystal-image".
-            // This will allow the CSS to take effect.
-            imageCrystal.addClass("crystal-image");
-
-            // Each imageCrystal will be given a src link to the crystal image
-            imageCrystal.attr("src",
-                "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg"
-                );
-
-            // Each imageCrystal will be given a data attribute called data-crystalValue.
-            // This data attribute will be set equal to the array value.
-            imageCrystal.attr("data-crystalvalue", numberOptions[i]);
-
-            // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
-            $("#crystals").append(imageCrystal);
-        }
-
-        // This time, our click event applies to every single crystal on the page. Not just one.
-        $(".crystal-image").on("click", function () {
-
-            // Determining the crystal's value requires us to extract the value from the data attribute.
-            // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-            // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
-            // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-
-            var crystalValue = ($(this).attr("data-crystalvalue"));
-            crystalValue = parseInt(crystalValue);
-            // We then add the crystalValue to the user's "counter" which is a global variable.
-            // Every click, from every crystal adds to the global counter.
-            counter += crystalValue;
-
-            // All of the same game win-lose logic applies. So the rest remains unchanged.
-            alert("New score: " + counter);
-
-            if (counter === targetNumber) {
-                alert("You win!");
-            } else if (counter >= targetNumber) {
-                alert("You lose!!");
-            }
-
-        });
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="./assets/javascript/game.js"></script>
 </body>
 
 </html>
